@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+# get the directory of the script
+script_directory="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+
+echo "testing: $script_directory"
+
+rm -rf "$script_directory/.test"
+
+cp -r "$script_directory/fixtures" "$script_directory/.test"
+
+echo "testing: check $script_directory/.test/action.yaml"
+"$script_directory/check" "$script_directory/.test/action.yaml"
+
+cmp -s "$script_directory/.test/README.md" "$script_directory/fixtures/expected-README.md" || (echo "ERROR: README.md does not match expected" && exit 1)
+rm -rf "$script_directory/.test"

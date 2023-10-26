@@ -1,0 +1,6 @@
+site_name: Turo GitHub Actions Standards
+theme:
+  name: material
+plugins:
+  - search
+#  - git-latest-release

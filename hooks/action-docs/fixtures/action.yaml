@@ -1,0 +1,17 @@
+name: Check node build
+description: GitHub Action that determines if the code has changed without actually running a build.
+inputs:
+  github-token:
+    required: true
+    description: GitHub token that can create/delete comments. e.g. 'secrets.GITHUB_TOKEN'
+outputs:
+  some-output:
+    description: Some output
+    value: ${{ steps.some-step.outputs.some-output }}
+runs:
+  using: composite
+  steps:
+    - name: output
+      id: some-step
+      shell: bash
+      run: echo "some-output=hello" >> "${GITHUB_OUTPUTS}"

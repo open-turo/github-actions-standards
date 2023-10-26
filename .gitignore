@@ -1,0 +1,7 @@
+# IntelliJ IDEA
+.idea/
+
+# Crash log files
+crash.log
+
+.test/
