@@ -1,0 +1,20 @@
+#!/bin/bash -e
+
+check_files() {
+	has_error=0
+	for file in "$@"; do
+
+		# ignore if the file does not end with /action.yaml
+		if [[ "${file}" != *"/action.yaml" ]]; then
+			echo "skipping: ${file}"
+			continue
+		fi
+		readme_file=$(dirname "${file}")/README.md
+		echo "npx action-docs --no-banner -a '${file}' --update-readme '${readme_file}'"
+		npx action-docs --no-banner -a "${file}" --update-readme "${readme_file}"
+
+	done
+	return $has_error
+}
+
+check_files "$@"

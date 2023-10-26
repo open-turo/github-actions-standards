@@ -1,0 +1,6 @@
+- id: action-docs
+  name: "Update action README"
+  description: "Runs action-docs to update the README.md for each action.yaml file"
+  entry: hooks/action-docs/check
+  language: script
+  files: \.action.yaml$
