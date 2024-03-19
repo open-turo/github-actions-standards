@@ -1,17 +1,15 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [main]
   workflow_dispatch:
+  pull_request:
 
 jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: mfinelli/setup-shfmt@v3
@@ -20,12 +18,13 @@ jobs:
         with:
           repository: rhysd/actionlint
       - name: Pre-commit
-        uses: open-turo/action-pre-commit@v3
-
+        uses: open-turo/action-pre-commit@v1
+      - name: Check release notes on pull_request
+        if: github.event_name == 'pull_request'
+        uses: open-turo/actions-release/lint-release-notes@v4
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - run: script/test
+      - uses: actions/checkout@v4
+      - run: ./script/test
