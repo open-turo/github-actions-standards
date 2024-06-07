@@ -59,6 +59,17 @@ jobs:
         run: mkdocs build --config-file ./mkdocs.yml --site-dir ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+      - name: Fetch tags
+        if: steps.release.outputs.new-release-published == 'true'
+        shell: bash
+        run: |
+          git fetch --tags
+          git clean -fd
+      - name: Major branch
+        if: steps.release.outputs.new-release-published == 'true'
+        uses: open-turo/action-major-release@v1
+        with:
+          major-version: ${{ steps.release.outputs.new-release-major-version }}
 
   # Deployment job
   deploy:
