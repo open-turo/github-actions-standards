@@ -1,0 +1,12 @@
+name: CI
+
+on:
+  pull_request:
+    types: [edited, opened, reopened, synchronize]
+    branches: [main]
+
+jobs:
+  pr-lint:
+    name: PR Lint
+    uses: ./.github/workflows/reusable-workflow.pr-lint.yaml
+    secrets: inherit
