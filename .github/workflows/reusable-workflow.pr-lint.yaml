@@ -2,6 +2,17 @@ name: "Workflow: PR Lint"
 
 on:
   workflow_call:
+    inputs:
+      runner-group:
+        description: "Runner group to use (optional, for organization/enterprise runner groups)"
+        required: false
+        type: string
+        default: ""
+      runner-labels:
+        description: 'Runner labels as a string (e.g., "ubuntu-latest") or JSON array (e.g., ["self-hosted", "linux"])'
+        required: false
+        type: string
+        default: "ubuntu-latest"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -10,8 +21,9 @@ concurrency:
 jobs:
   publish:
     name: Lint PR
-    runs-on: ubuntu-latest
+    runs-on:
+      group: ${{ inputs.runner-group }}
+      labels: ${{ inputs.runner-labels }}
     steps:
-      - uses: actions/checkout@v4
       - name: Validate Checklists
         uses: roryq/checkmate@master
