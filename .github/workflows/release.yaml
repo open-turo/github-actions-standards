@@ -44,7 +44,7 @@ jobs:
         run: pip install mkdocs-material
       - name: Release
         id: release
-        uses: open-turo/actions-release/semantic-release@v4
+        uses: open-turo/actions-release/semantic-release@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           extra-plugins: |

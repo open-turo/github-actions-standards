@@ -21,7 +21,7 @@ jobs:
         uses: open-turo/action-pre-commit@v1
       - name: Check release notes on pull_request
         if: github.event_name == 'pull_request'
-        uses: open-turo/actions-release/lint-release-notes@v4
+        uses: open-turo/actions-release/lint-release-notes@v5
   test:
     name: Test
     runs-on: ubuntu-latest
