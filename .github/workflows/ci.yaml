@@ -18,7 +18,7 @@ jobs:
         with:
           repository: rhysd/actionlint
       - name: Pre-commit
-        uses: open-turo/action-pre-commit@v1
+        uses: open-turo/action-pre-commit@v3
       - name: Check release notes on pull_request
         if: github.event_name == 'pull_request'
         uses: open-turo/actions-release/lint-release-notes@v5
