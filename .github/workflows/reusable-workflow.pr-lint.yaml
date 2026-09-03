@@ -12,6 +12,5 @@ jobs:
     name: Lint PR
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
       - name: Validate Checklists
-        uses: roryq/checkmate@master
+        uses: open-turo/actions-pr-lint/check-pr-checklist@v1
