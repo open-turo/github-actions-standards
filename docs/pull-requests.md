@@ -32,34 +32,18 @@ intention. Where possible, we should add appropriate linting. These should repot
 Adding checkboxes to PRs is a really powerful way to help reviewers understand what you have done and what you expect to
 be done. We suggest the following checkboxes be added to PRs:
 
-- Use [Checkmate checkboxes](https://github.com/RoryQ/checkmate)
+- Use [actions-pr-lint](https://github.com/open-turo/actions-pr-lint) to validate PR checklists
 - Use the reusable workflow in this repo to lint your PRs
-- Have a requited check for `PR Lint`
+- Have a required check for `PR Lint`
 
-In your PR description or issue template, place `<!--Checkmate-->` above the checklist block you want validated. A block
-of checklist items is one without empty lines in-between.
+The `check-pr-checklist` action validates that all markdown checkboxes in the PR body are checked. No special HTML
+comments or indicators are needed — all checkboxes are validated by default.
 
 ```
 #### :heavy_check_mark: Checklist
 
-<!--Checkmate-->
-
 - [ ] Added or updated documentation
 - [x] Tests for new functionality and regression tests for bug fixes
-
-#### This checklist will not be validated
-
-- [ ] This is ignored
-- [ ] This is ignored
-- [ ] This is ignored
-
-
-#### Oasis or Blur?
-This select list validates that only one item is selected.
-
-<!--Checkmate select=1-->
-- [ ] Oasis
-- [ ] Blur
 ```
 
 #### Adding PR Lint Action
